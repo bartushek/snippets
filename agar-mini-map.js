@@ -223,13 +223,6 @@ setTimeout(function()
         function miniMapReset() {
             cells = [];
             window.mini_map_tokens = [];
-            start_x = 0;
-            start_y = 0;
-            end_x = 0;
-            end_y = 0;
-            length_x = 0;
-            length_y = 0;
-            firstDiemensionCall = false;
         }
 
         function miniMapInit() {
@@ -754,7 +747,16 @@ setTimeout(function()
         });
 
         $(document).on('click', '[data-itr="play"]', function(){
-          miniMapReset();
+
+          start_x = 0;
+          start_y = 0;
+          end_x = 0;
+          end_y = 0;
+          length_x = 0;
+          length_y = 0;
+          setTimeout(function(){
+            miniMapReset();
+          },500);
         });
 
 
