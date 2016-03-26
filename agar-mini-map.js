@@ -754,6 +754,7 @@ setTimeout(function()
           end_y = 0;
           length_x = 0;
           length_y = 0;
+          firstDiemensionCall = false;
           setTimeout(function(){
             miniMapReset();
           },500);
