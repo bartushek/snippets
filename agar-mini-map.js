@@ -112,8 +112,8 @@ setTimeout(function()
                 {
                     token = id_players[id];
                     draw(token, token.color);
-                    if (options.enableCross && current_cell_ids.indexOf(token.id) != -1)
-                        miniMapDrawCross(token.x, token.y, token.color);
+                    if (options.enableCross)
+                        miniMapDrawCross(token.x, token.y, token.color, current_cell_ids.indexOf(token.id) === -1);
                 }
 
                 if (options.enableMultiCells)
@@ -144,18 +144,22 @@ setTimeout(function()
             }
         }
 
-        function miniMapDrawCross(x, y, color) {
+        function miniMapDrawCross(x, y, color, party) {
             var canvas = window.mini_map;
             var ctx = canvas.getContext('2d');
+
+            if(party) {
+              ctx.setLineDash([5, 5]);
+            }
             ctx.lineWidth = 0.5;
             ctx.beginPath();
             ctx.moveTo(0, y * canvas.height);
             ctx.lineTo(canvas.width, y * canvas.height);
             ctx.moveTo(x * canvas.width, 0);
             ctx.lineTo(x * canvas.width, canvas.height);
-            ctx.closePath();
             ctx.strokeStyle = color || '#FFFFFF';
             ctx.stroke();
+            ctx.setLineDash([0]);
         }
 
         function miniMapDrawMiddleCross() {
